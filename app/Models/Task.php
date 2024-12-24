@@ -28,4 +28,5 @@ class Task extends Model
 
         return $statusBadges[$this->status] ?? '<span class="badge rounded-pill bg-secondary text-white">' . __('Unknown') . '</span>';
     }
+
 }

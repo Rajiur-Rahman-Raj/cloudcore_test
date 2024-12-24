@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +19,11 @@ Route::redirect('/', 'login');
 Auth::routes();
 
 Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], function () {
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    Route::get('/add/task', [App\Http\Controllers\HomeController::class, 'addTask'])->name('add.task');
-    Route::post('/task/store', [App\Http\Controllers\HomeController::class, 'taskStore'])->name('task.store');
-    Route::get('/task/list', [App\Http\Controllers\HomeController::class, 'taskList'])->name('task.list');
-    Route::delete('/task/delete/{id}', [App\Http\Controllers\HomeController::class, 'taskDelete'])->name('task.delete');
-    Route::get('/task/edit/{id}', [App\Http\Controllers\HomeController::class, 'taskEdit'])->name('task.edit');
-    Route::post('/task/update/{id}', [App\Http\Controllers\HomeController::class, 'taskUpdate'])->name('task.update');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/add/task', [HomeController::class, 'addTask'])->name('add.task');
+    Route::post('/task/store', [HomeController::class, 'taskStore'])->name('task.store');
+    Route::get('/task/list', [HomeController::class, 'taskList'])->name('task.list');
+    Route::get('/task/edit/{id}', [HomeController::class, 'taskEdit'])->name('task.edit');
+    Route::delete('/task/delete/{id}', [HomeController::class, 'taskDelete'])->name('task.delete');
+    Route::post('/task/update/{id}', [HomeController::class, 'taskUpdate'])->name('task.update');
 });

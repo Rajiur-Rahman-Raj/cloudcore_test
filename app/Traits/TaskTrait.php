@@ -17,8 +17,6 @@ trait TaskTrait
         $task->due_date = Carbon::parse($request->due_date);
         $task->status = $request->status;
         $task->save();
-
-        return $task;
     }
 
     public function updateTask($request, $id)
@@ -29,8 +27,6 @@ trait TaskTrait
         $task->due_date = Carbon::parse($request->due_date);
         $task->status = $request->status;
         $task->save();
-
-        return $task;
     }
 
 }

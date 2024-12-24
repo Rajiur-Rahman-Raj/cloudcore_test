@@ -2,12 +2,14 @@
 
 namespace App\Http\Requests;
 
+use App\Traits\ApiResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class TaskRequest extends FormRequest
 {
+    use ApiResponse;
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -56,11 +58,10 @@ class TaskRequest extends FormRequest
     protected function failedValidation(Validator $validator)
     {
         if ($this->is('api/*')) {
-            throw new HttpResponseException(response()->json([
-                'success' => false,
-                'message' => 'Validation errors',
-                'errors' => $validator->errors(),
-            ], 422));
+            throw new HttpResponseException(response()->json(
+                $this->withError($validator->errors()->all()),
+                422
+            ));
         }
 
         parent::failedValidation($validator);
