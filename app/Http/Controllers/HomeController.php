@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Models\Task;
 use App\Traits\TaskTrait;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -51,9 +52,23 @@ class HomeController extends Controller
         }
     }
 
-    public function taskList()
+    public function taskList(Request $request)
     {
-        $data['tasks'] = Task::latest()->paginate(1);
+        $search = $request->all();
+        $due_date = isset($search['due_date']) ? Carbon::parse($search['due_date']) : null;
+
+        $data['tasks'] = Task::orderBy('due_date', 'ASC')
+            ->when(isset($search['title']), function ($query) use ($search) {
+                return $query->where('title', 'LIKE', "%{$search['title']}%");
+            })
+            ->when(isset($search['due_date']), function ($query) use ($due_date) {
+                return $query->whereDate('due_date', '=', $due_date);
+            })
+            ->when(isset($search['status']) && $search['status'] !== 'all', function ($query) use ($search) {
+                return $query->where('status', '=', $search['status']);
+            })
+            ->paginate(1);
+
         return view('user.task.list', $data);
     }
 
