@@ -21,4 +21,11 @@ if (!function_exists('activeMenu')) {
     }
 }
 
+if (!function_exists('customDate')) {
+    function customDate($date, $format = 'd M, Y')
+    {
+        return date($format, strtotime($date));
+    }
+}
+
 

@@ -79,6 +79,10 @@
                                     {{ __('Add Task') }}
                                 </a>
 
+                                <a class="dropdown-item" href="{{ route('user.task.list') }}">
+                                    {{ __('Task List') }}
+                                </a>
+
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

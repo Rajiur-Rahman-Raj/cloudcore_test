@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTaskRequest;
+use App\Models\Task;
 use App\Traits\TaskTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,5 +49,23 @@ class HomeController extends Controller
             DB::rollBack();
             return back()->withErrors([$e->getMessage()]);
         }
+    }
+
+    public function taskList()
+    {
+        $data['tasks'] = Task::latest()->paginate(1);
+        return view('user.task.list', $data);
+    }
+
+    public function taskDelete($id)
+    {
+        $task = Task::find($id);
+
+        if (!$task) {
+            return back()->with('error', 'Task not found');
+        }
+
+        $task->delete();
+        return back()->with('success', 'Task deleted successfully');
     }
 }

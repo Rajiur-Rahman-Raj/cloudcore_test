@@ -21,4 +21,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'user', 'as' => 'user.'], fu
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::get('/add/task', [App\Http\Controllers\HomeController::class, 'addTask'])->name('add.task');
     Route::post('/task/store', [App\Http\Controllers\HomeController::class, 'taskStore'])->name('task.store');
+    Route::get('/task/list', [App\Http\Controllers\HomeController::class, 'taskList'])->name('task.list');
+    Route::delete('/task/delete/{id}', [App\Http\Controllers\HomeController::class, 'taskDelete'])->name('task.delete');
 });
