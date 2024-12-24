@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class StoreTaskRequest extends FormRequest
+class TaskRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,7 +26,7 @@ class StoreTaskRequest extends FormRequest
         return [
             'title' => 'required|string|min:3|max:100',
             'details' => 'required|string|min:5|max:5000',
-            'due_date' => 'required|date|after_or_equal:today',
+            'due_date' => 'required|date',
             'status' => 'required|integer|in:0,1,2',
         ];
     }
@@ -46,18 +46,13 @@ class StoreTaskRequest extends FormRequest
 
             'due_date.required' => 'A due date is required.',
             'due_date.date' => 'The due date must be a valid date.',
-            'due_date.after_or_equal' => 'The due date cannot be in the past.',
 
             'status.required' => 'The status is required.',
             'status.integer' => 'The status must be an integer.',
             'status.in' => 'The status must be one of the following values: 0, 1, or 2.',
         ];
-
     }
 
-    /**
-     * Handle failed validation for API requests.
-     */
     protected function failedValidation(Validator $validator)
     {
         if ($this->is('api/*')) {

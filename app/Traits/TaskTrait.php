@@ -21,4 +21,16 @@ trait TaskTrait
         return $task;
     }
 
+    public function updateTask($request, $id)
+    {
+        $task = Task::findOrFail($id);
+        $task->title = $request->title;
+        $task->details = $request->details;
+        $task->due_date = Carbon::parse($request->due_date);
+        $task->status = $request->status;
+        $task->save();
+
+        return $task;
+    }
+
 }

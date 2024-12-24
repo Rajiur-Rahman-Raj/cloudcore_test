@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\TaskRequest;
 use App\Models\Task;
 use App\Traits\TaskTrait;
 use Carbon\Carbon;
@@ -38,7 +38,7 @@ class HomeController extends Controller
         return view('user.task.add');
     }
 
-    public function taskStore(StoreTaskRequest $request)
+    public function taskStore(TaskRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -70,6 +70,26 @@ class HomeController extends Controller
             ->paginate(1);
 
         return view('user.task.list', $data);
+    }
+
+    public function taskEdit($id)
+    {
+        $data['task'] = Task::findOrFail($id);
+        return view('user.task.edit', $data);
+    }
+
+    public function taskUpdate(TaskRequest $request, $id)
+    {
+        DB::beginTransaction();
+        try {
+            $this->updateTask($request, $id);
+            DB::commit();
+            return back()->with('success', 'Task updated successfully');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors([$e->getMessage()]);
+        }
     }
 
     public function taskDelete($id)

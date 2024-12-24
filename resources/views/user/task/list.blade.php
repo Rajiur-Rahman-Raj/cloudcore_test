@@ -79,16 +79,7 @@
                                         {{ customDate($task->due_date) }}
                                     </td>
                                     <td>
-                                        @if($task->status == 0)
-                                            <span
-                                                class="badge rounded-pill bg-warning text-white">@lang('Pending')</span>
-                                        @elseif($task->status == 1)
-                                            <span
-                                                class="badge rounded-pill bg-primary text-white">@lang('In Progress')</span>
-                                        @else
-                                            <span
-                                                class="badge rounded-pill bg-success text-white">@lang('Completed')</span>
-                                        @endif
+                                        {!! $task->status_badge !!}
                                     </td>
                                     <td>
                                         <div class="dropdown">
@@ -97,11 +88,16 @@
                                                     aria-expanded="false">
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <li><a class="dropdown-item" href="#">@lang('Edit')</a></li>
-                                                <li><a class="dropdown-item deleteTask"
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                       href="{{ route('user.task.edit', $task->id) }}">@lang('Edit')</a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item deleteTask"
                                                        data-route="{{ route('user.task.delete', $task->id) }}"
                                                        href="javascript:void(0)" data-bs-toggle="modal"
-                                                       data-bs-target="#taskDeleteModal">@lang('Delete')</a></li>
+                                                       data-bs-target="#taskDeleteModal">@lang('Delete')</a>
+                                                </li>
                                             </ul>
                                         </div>
                                     </td>
