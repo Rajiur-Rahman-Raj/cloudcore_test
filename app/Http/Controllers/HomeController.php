@@ -52,7 +52,7 @@ class HomeController extends Controller
             ->when(isset($search['status']) && $search['status'] !== 'all', function ($query) use ($search) {
                 return $query->where('status', '=', $search['status']);
             })
-            ->paginate(1);
+            ->paginate(3);
 
         return view('user.task.list', $data);
     }

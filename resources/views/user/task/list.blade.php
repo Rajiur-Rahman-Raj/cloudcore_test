@@ -59,7 +59,6 @@
                             <tr>
                                 <th scope="col">@lang('SL').</th>
                                 <th scope="col">@lang('Title')</th>
-                                <th scope="col">@lang('Details')</th>
                                 <th scope="col">@lang('Due Date')</th>
                                 <th scope="col">@lang('Status')</th>
                                 <th scope="col">@lang('Action')</th>
@@ -72,9 +71,6 @@
                                     <th scope="row">
                                         {{ $task->title }}
                                     </th>
-                                    <td>
-                                        {{ $task->details }}
-                                    </td>
                                     <td>
                                         {{ customDate($task->due_date) }}
                                     </td>

@@ -1,66 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Task Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+## Overview
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+This project is a Task Management System built using Laravel 10. It allows users to manage tasks with features such as task creation, viewing, updating, and deletion. Additionally, it includes API endpoints for seamless integration with other applications, using Laravel Sanctum for API authentication.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project Documentation:
 
-## Learning Laravel
+Project Live Demo Link From My C-panel: https://bdcodersit.com/cloudcore-test/
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Credential
+    User Authentication
+    -> email: demouser@gmail.com
+	-> password: demouser
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Project Github Link:
+   https://github.com/Rajiur-Rahman-Raj/cloudcore_test
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Project Google Drive Link:
+https://drive.google.com/drive/folders/1wDExc8yrFZ9VQraT0vJsmujr8erb207L?usp=sharing
 
-## Laravel Sponsors
+- Project's sql and api's json files are provided with the project zip file
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+## Features & Approach
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. **User Authentication**:
+    - User registration, login, and logout implemented using the Laravel UI package.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Task CRUD Operations**:
+    - Create, Read, Update, and Delete tasks.
+    - Tasks have attributes such as `title`, `description`, `due_date`, and `status` (Pending, In Progress, Completed).
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+3. **Request Validation**:
+    - Used Form Request classes (e.g., `TaskRequest`) to validate input data for both web and API routes.
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. **Task Filtering and Sorting**:
+    - Filter tasks by `status` (Pending, In Progress, Completed).
+    - Sort tasks by `due_date`.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+5. **Global Task Status Method**:
+    - Created a reusable method (`getStatusBadge`) in the `Task` model to generate HTML status badges dynamically.
+    - This ensures consistent status rendering across views.
+   
+
+6. **API Development**:
+    - API endpoints for task operations secured with Laravel Sanctum.
+    - Consistent JSON responses for API requests using a custom `ApiResponse` trait.
+
+
+7. **Code Reusability**:
+    - Used traits (`ApiResponse`) to standardize success and error responses.
+    - Centralized validation and response handling to reduce duplication.
+
+
+5. **Server Side Pagination**:
+    - Pagination is implemented for task listing to handle large datasets efficiently.
+
+
+
+## Installation
+
+## Project run guideline From Local Server
+===========================================
+
+1. **Clone the repository**::
+   ```bash
+   git clone <repository-url>
+   cd cloudcore_test
+   
+   Or the entire project google drive download link share to you as a zip file.
+   Along with the zip file, the sql and postman api json file is also provided inside the folder.
+   
+2. **Need to have a local server on your PC**:
+    - example: xammp 
+
+
+3. **Run the project on your PC**:
+    - you need to place My Project folder inside your xampp htdocs folder. otherwize it's not working
+      (php artisan serve Command will not work to run this project)
+
+
+4. **Set up the environment**:
+    - Copy .env.example to .env and configure database and other settings.
+    - Create a database and import my given sql file into that database. or run this command `php artisan migrate`
+
+
+5. **Run Project**:
+    - run the project with localhost / project name in your browser URL.
+
+    
+---
